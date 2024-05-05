@@ -131,6 +131,8 @@ class _MatrixGestureDetectorState extends State<MatrixGestureDetector> {
       behavior: widget.behavior,
       onScaleStart: onScaleStart,
       onScaleUpdate: onScaleUpdate,
+      onScaleEnd: onScaleEnd,
+      onTap: onTap,
       child: child,
     );
   }
@@ -158,6 +160,10 @@ class _MatrixGestureDetectorState extends State<MatrixGestureDetector> {
 
   void onScaleEnd(ScaleEndDetails details) {
     widget.onScaleEnd();
+  }
+
+  void onTap() {
+    widget.onTap();
   }
 
   void onScaleUpdate(ScaleUpdateDetails details) {
