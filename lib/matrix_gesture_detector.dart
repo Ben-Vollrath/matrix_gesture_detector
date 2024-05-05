@@ -68,6 +68,10 @@ class MatrixGestureDetector extends StatefulWidget {
 
   final VoidCallback onTap;
 
+  final VoidCallback onTapDown;
+
+  final VoidCallback onTapUp;
+
 
   const MatrixGestureDetector({
     Key? key,
@@ -82,6 +86,9 @@ class MatrixGestureDetector extends StatefulWidget {
     required this.onScaleStart,
     required this.onScaleEnd,
     required this.onTap,
+    required this.onTapDown,
+    required this.onTapUp,
+
   })  : super(key: key);
 
   @override
@@ -133,6 +140,8 @@ class _MatrixGestureDetectorState extends State<MatrixGestureDetector> {
       onScaleUpdate: onScaleUpdate,
       onScaleEnd: onScaleEnd,
       onTap: onTap,
+      onTapDown: onTapDown,
+      onTapUp: onTapUp,
       child: child,
     );
   }
@@ -160,6 +169,14 @@ class _MatrixGestureDetectorState extends State<MatrixGestureDetector> {
 
   void onScaleEnd(ScaleEndDetails details) {
     widget.onScaleEnd();
+  }
+
+  void onTapDown(TapDownDetails details) {
+    widget.onTapDown();
+  }
+
+  void onTapUp(TapUpDetails details) {
+    widget.onTapUp();
   }
 
   void onTap() {
