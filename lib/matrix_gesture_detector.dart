@@ -72,6 +72,11 @@ class MatrixGestureDetector extends StatefulWidget {
 
   final VoidCallback onTapUp;
 
+  final Matrix4 translationDeltaMatrix;
+  final Matrix4 scaleDeltaMatrix;
+  final Matrix4 rotationDeltaMatrix;
+  final Matrix4 matrix;
+
 
   const MatrixGestureDetector({
     Key? key,
@@ -87,7 +92,11 @@ class MatrixGestureDetector extends StatefulWidget {
     required this.onScaleEnd,
     required this.onTap,
     required this.onTapDown,
-    required this.onTapUp,
+    required this.onTapUp, 
+    required this.translationDeltaMatrix, 
+    required this.scaleDeltaMatrix, 
+    required this.rotationDeltaMatrix, 
+    required this.matrix,
 
   })  : super(key: key);
 
@@ -125,10 +134,19 @@ class MatrixGestureDetector extends StatefulWidget {
 }
 
 class _MatrixGestureDetectorState extends State<MatrixGestureDetector> {
-  Matrix4 translationDeltaMatrix = Matrix4.identity();
-  Matrix4 scaleDeltaMatrix = Matrix4.identity();
-  Matrix4 rotationDeltaMatrix = Matrix4.identity();
-  Matrix4 matrix = Matrix4.identity();
+  late Matrix4 translationDeltaMatrix;
+  late Matrix4 scaleDeltaMatrix;
+  late Matrix4 rotationDeltaMatrix;
+  late Matrix4 matrix;
+
+  @override
+  void initState() {
+    super.initState();
+    translationDeltaMatrix = widget.translationDeltaMatrix;
+    scaleDeltaMatrix = widget.scaleDeltaMatrix;
+    rotationDeltaMatrix = widget.rotationDeltaMatrix;
+    matrix = widget.matrix;
+  }
 
   @override
   Widget build(BuildContext context) {
